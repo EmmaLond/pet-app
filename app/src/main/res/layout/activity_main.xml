@@ -16,10 +16,9 @@
         tools:layout_editor_absoluteY="1dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/userText"
             android:layout_width="411dp"
             android:layout_height="76dp"
-            android:text="Hello &quot;user&quot;!"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="48sp"
@@ -29,33 +28,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/recycleViewPets"
             android:layout_width="410dp"
             android:layout_height="405dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="138dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/myPetText"
             android:layout_width="154dp"
             android:layout_height="50dp"
             android:text="My Pets"
             android:textAlignment="textStart"
             android:textAllCaps="true"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+            app:layout_constraintBottom_toTopOf="@+id/recycleViewPets"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/addPetButton"
             android:layout_width="54dp"
             android:layout_height="73dp"
             android:clickable="true"
             android:contentDescription="Add Pet"
             android:contextClickable="false"
-            app:srcCompat="@android:drawable/ic_input_add"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="563dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
