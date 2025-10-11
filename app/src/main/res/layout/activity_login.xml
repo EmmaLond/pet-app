@@ -41,10 +41,9 @@
             android:id="@+id/usernameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="300dp"
             android:hint="@string/hint_username"
             android:inputType="text"
-            android:maxLength="25"
+            android:maxLength="50"
             android:textSize="25sp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -54,7 +53,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         android:layout_marginEnd="16dp"
         android:text="@string/view_password"
         android:textSize="30sp"
@@ -81,7 +80,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="222dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -93,7 +92,6 @@
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="464dp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:maxLength="25"
