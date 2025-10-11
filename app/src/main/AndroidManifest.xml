@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetApp">
         <activity
-            android:name=".signup"
+            android:name=".Signup"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".LogSign"

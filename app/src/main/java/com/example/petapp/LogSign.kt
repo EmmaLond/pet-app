@@ -16,11 +16,11 @@ class LogSign : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login_button)
 
         login.setOnClickListener {
-            val intent = Intent(this, login::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
         signUp.setOnClickListener {
-            val intent = Intent(this, signUp::class.java)
+            val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
     }
