@@ -126,6 +126,12 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/Peter"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text=""/>
+
     <Button
         android:id="@+id/button_signup"
         android:layout_width="0dp"
