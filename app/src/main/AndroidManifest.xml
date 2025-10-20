@@ -21,7 +21,7 @@
             android:name=".LogSign"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeScreen"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
