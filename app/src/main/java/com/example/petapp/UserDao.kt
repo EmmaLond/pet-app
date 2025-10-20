@@ -12,8 +12,8 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAllUsers(): Flow<List<Account>>
 
-    @Query("SELECT password FROM users WHERE email LIKE :email")
-    suspend fun getPassword(email: String): String
+    @Query("SELECT password FROM users WHERE email = :email")
+    suspend fun getPassword(email: String): String?
 
     @Insert
     suspend fun insert(user: Account)
