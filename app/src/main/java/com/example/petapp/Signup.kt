@@ -25,6 +25,7 @@ class Signup : AppCompatActivity() {
         val warning = findViewById<TextView>(R.id.mistake)
         
         signupButton.setOnClickListener {
+            // Set errors
             if (email.text.isEmpty()) {
                 email.setError("Email is required.")
             }
@@ -41,10 +42,13 @@ class Signup : AppCompatActivity() {
                 }
                 val passwordOne = password_one.text.toString().trim()
                 val passwordTwo = password_two.text.toString().trim()
+
                 lifecycleScope.launch {
+                    // Check account exists, returns null if there is no account
                     val accountExist =
                         accountTable.getPassword(email = email.text.toString().trim())
 
+                    // Adds login, doesn't go anywhere yet
                     if (passwordOne == passwordTwo && accountExist == null) {
                         lifecycleScope.launch {
                             accountTable.insert(
@@ -54,22 +58,11 @@ class Signup : AppCompatActivity() {
                                 )
                             )
                         }
+                    // Sets warnings
                     } else if (passwordOne != passwordTwo) {
                         warning.setText("Passwords do not match.")
                     } else {
                         warning.setText("An account with that email already exists.")
-                        // This code is used to test the database, please leave it just in case
-//                        lifecycleScope.launch {
-//                            accountTable.getAllUsers().collect { value ->
-//                                value.forEach { (id, email, password) ->
-//                                    Log.println(
-//                                        Log.WARN, "DEBUG",
-//                                        "$id $email $password"
-//                                    )
-//                                }
-//                            }
-//                        }
-
                     }
                 }
             }
