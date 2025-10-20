@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffc5d3"
-    tools:context=".SplashScreen">
+    tools:context=".HomeScreen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="413dp"
@@ -57,5 +57,7 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
 
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
         val username = findViewById<TextInputEditText>(R.id.usernameEditText)
         val password = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<Button>(R.id.button_login)
