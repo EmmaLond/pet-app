@@ -2,6 +2,8 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -19,16 +21,12 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
 
-        //val btnLogin = findViewById<Button>(R.id.btnLogin)
         val username = findViewById<TextInputEditText>(R.id.usernameEditText)
         val password = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<Button>(R.id.btnLogin)
-        val warning = findViewById<TextView>(R.id.warning)
+
 
         loginButton.setOnClickListener {
-            // Reset warnings
-            warning.setText("")
-
             // Set errors
             val email = username.text.toString().trim()
             if (email.isNullOrBlank()) {
@@ -54,10 +52,12 @@ class Login : AppCompatActivity() {
 
                         // Set warning
                         } else {
-                            warning.setText("Incorrect username or password. Please try again.")
+                            password.setError("Incorrect username or password. Please try again.")
+                            username.setError("Incorrect username or password. Please try again.")
                         }
                     } else {
-                        warning.setText("Incorrect username or password. Please try again.")
+                        password.setError("Incorrect username or password. Please try again.")
+                        username.setError("Incorrect username or password. Please try again.")
                     }
                 }
             }
