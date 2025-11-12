@@ -9,7 +9,7 @@ data class UserWithPets(
     @Relation(
         parentColumn = "userId",
         entityColumn = "petId",
-        associateBy = Junction(UserPetCrossRef::class)
+
     )
     val pets: List<PetInfo>
 )
