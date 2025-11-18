@@ -48,10 +48,9 @@ class Login : AppCompatActivity() {
 
                         // Login
                         if (checkPassword) {
-                            val theID = accountTable.getUserId(email = email)
                             val intent = Intent(this@Login, HomeScreen::class.java)
                             intent.putExtra("email", email)
-                            intent.putExtra("userId", theID)
+                            intent.putExtra("userId", accountTable.getUserId(email = email))
                             startActivity(intent)
 
                         // Set warning

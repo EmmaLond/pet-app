@@ -3,6 +3,7 @@ package com.example.petapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log.v
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -37,10 +38,12 @@ class HomeScreen : AppCompatActivity() {
 
         lifecycleScope.launch {
             val userEmail = intent.getStringExtra("email")
+            val userId = intent.getIntExtra("userId", -1)
 
             usernameText.text = "Hello, ${userEmail}!"
-            val userWithPets = accountDao.getUserWithPets(intent.getIntExtra("userId", -1))
-            val pets = userWithPets.firstOrNull()?.pets ?: emptyList()
+            val userWithPets = accountDao.getUserWithPets(userId)
+            val pets = userWithPets.flatMap { it.pets }
+//            val pets = userWithPets.firstOrNull()?.pets ?: emptyList()
             petsList.adapter = PetsAdapter(pets)
         }
         addButton.setOnClickListener {
@@ -55,5 +58,39 @@ class HomeScreen : AppCompatActivity() {
             insets
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume () {
+        super.onResume()
+
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+
+        val usernameText = findViewById<TextView>(R.id.userText)
+        val addButton = findViewById<FloatingActionButton>(R.id.addPetButton)
+        val accountDao = AppDatabase.getDatabase(applicationContext).userDao()
+        val petsList = findViewById<RecyclerView>(R.id.recycleViewPets)
+        petsList.layoutManager = LinearLayoutManager(this)
+
+
+        lifecycleScope.launch {
+            val userId = intent.getIntExtra("userId", -1)
+            val userEmail = intent.getStringExtra("email")
+
+            usernameText.text = "Hello, ${userEmail}!"
+            val userWithPets = accountDao.getUserWithPets(userId)
+            val pets = userWithPets.flatMap { it.pets }
+            //val pets = userWithPets.firstOrNull()?.pets ?: emptyList()
+            petsList.adapter = PetsAdapter(pets)
+        }
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddPetActivity::class.java)
+            intent.putExtra("userId", intent.getIntExtra("userId", -1))
+            startActivity(intent)
+        }
     }
 }
