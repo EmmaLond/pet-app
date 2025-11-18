@@ -25,6 +25,9 @@ interface UserDao {
     @Query("DELETE FROM users")
     suspend fun deleteAll()
 
+    @Query("SELECT userId FROM users WHERE email = :email")
+    suspend fun getUserId(email: String): Int
+
     //pet methods
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPet(pet: PetInfo): Long

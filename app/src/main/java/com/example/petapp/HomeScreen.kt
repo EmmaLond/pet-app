@@ -2,6 +2,7 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.v
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -34,22 +35,17 @@ class HomeScreen : AppCompatActivity() {
         petsList.layoutManager = LinearLayoutManager(this)
 
 
-
-
         lifecycleScope.launch {
             val userEmail = intent.getStringExtra("email")
-            val userAccount = accountDao.getAllUsers().first().firstOrNull { it.email == userEmail }
 
-            if (userAccount != null) {
-                usernameText.text = "Hello, ${userAccount.email}!"
-                val userWithPets = accountDao.getUserWithPets(userAccount.userId)
-                val pets = userWithPets.firstOrNull()?.pets ?: emptyList()
-                petsList.adapter = PetsAdapter(pets)
-            }
+            usernameText.text = "Hello, ${userEmail}!"
+            val userWithPets = accountDao.getUserWithPets(intent.getIntExtra("userId", -1))
+            val pets = userWithPets.firstOrNull()?.pets ?: emptyList()
+            petsList.adapter = PetsAdapter(pets)
         }
         addButton.setOnClickListener {
             val intent = Intent(this, AddPetActivity::class.java)
-            intent.putExtra("userId", userAccount?.userId ?: -1)
+            intent.putExtra("userId", intent.getIntExtra("userId", -1))
             startActivity(intent)
         }
 

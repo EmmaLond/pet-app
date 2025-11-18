@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:background="@drawable/pet_item_border"
+    android:paddingLeft="4dp">
 
     <TextView
         android:id="@+id/petNameText"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:text="Pet Name"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="42dp"
+        android:layout_height="97dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:src="@drawable/outline_arrow_forward_ios_24" />
 
     <TextView
         android:id="@+id/petSpeciesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/petNameText"
+        android:layout_marginTop="0dp"
         android:text="Pet Species"
-        android:textSize="16sp"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/petBreedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/petSpeciesText"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:text="Breed"
-        android:textSize="16sp" />
-</LinearLayout>
+        android:textSize="20sp" />
+
+</RelativeLayout>
