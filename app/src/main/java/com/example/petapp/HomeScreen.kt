@@ -3,6 +3,7 @@ package com.example.petapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
@@ -16,6 +17,7 @@ import com.example.petapp.PetsAdapter
 import com.example.petapp.UserDao
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
+import kotlin.jvm.java
 
 class HomeScreen : AppCompatActivity() {
 
@@ -30,7 +32,6 @@ class HomeScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Get ID + email once
         userId = intent.getIntExtra("userId", -1)
         userEmail = intent.getStringExtra("email")
 
@@ -41,7 +42,13 @@ class HomeScreen : AppCompatActivity() {
 
         petsList = findViewById(R.id.recycleViewPets)
         petsList.layoutManager = LinearLayoutManager(this)
-        petsAdapter = PetsAdapter(emptyList())
+
+        petsAdapter = PetsAdapter(emptyList()) { clickedPet ->
+            val intent = Intent(this, PetProfile::class.java)
+            intent.putExtra("petId", clickedPet.petId)
+            startActivity(intent)
+        }
+
         petsList.adapter = petsAdapter
 
         val addButton = findViewById<FloatingActionButton>(R.id.addPetButton)
@@ -56,7 +63,7 @@ class HomeScreen : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadPets()  // Only reload data — DO NOT rebuild UI
+        loadPets()
     }
 
     private fun loadPets() {

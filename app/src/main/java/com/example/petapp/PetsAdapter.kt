@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PetsAdapter(private var pets: List<PetInfo>) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
+class PetsAdapter(private var pets: List<PetInfo>,
+                  private val onItemClick: (PetInfo) -> Unit)
+                  : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
 
     class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val petName: TextView = itemView.findViewById(R.id.petNameText)
@@ -24,6 +26,10 @@ class PetsAdapter(private var pets: List<PetInfo>) : RecyclerView.Adapter<PetsAd
         holder.petName.text = pet.name
         holder.petSpecies.text = pet.species
         holder.petBreed.text = pet.breed
+
+        holder.itemView.setOnClickListener {
+            onItemClick(pet)
+        }
     }
 
     override fun getItemCount(): Int = pets.size
