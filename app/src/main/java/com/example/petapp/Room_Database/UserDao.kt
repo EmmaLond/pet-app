@@ -1,7 +1,6 @@
 package com.example.petapp
 // package com.example.petapp.Room_Database
 
-import android.R
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -37,5 +36,5 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :userId")
-    suspend fun getUserWithPets(userId: Int): List<UserWithPets>
+    suspend fun getUserWithPets(userId: Int): UserWithPets
 }

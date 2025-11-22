@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PetsAdapter(private val pets: List<PetInfo>) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
+class PetsAdapter(private var pets: List<PetInfo>) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
 
     class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val petName: TextView = itemView.findViewById(R.id.petNameText)
@@ -27,4 +27,9 @@ class PetsAdapter(private val pets: List<PetInfo>) : RecyclerView.Adapter<PetsAd
     }
 
     override fun getItemCount(): Int = pets.size
+
+    fun updatePets(newPets: List<PetInfo>) {
+        pets = newPets
+        notifyDataSetChanged()
+    }
 }

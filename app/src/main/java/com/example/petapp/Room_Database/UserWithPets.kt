@@ -8,8 +8,7 @@ data class UserWithPets(
     @Embedded val user: Account,
     @Relation(
         parentColumn = "userId",
-        entityColumn = "petId",
-
+        entityColumn = "userId"
     )
     val pets: List<PetInfo>
 )
