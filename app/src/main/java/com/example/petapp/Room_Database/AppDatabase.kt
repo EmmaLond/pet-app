@@ -2,14 +2,11 @@ package com.example.petapp
 
 import androidx.room.RoomDatabase
 
-// package com.example.petapp.Room_Database
-
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
-// import androidx.room.RoomDatabase
 
-@Database(entities = [Account::class, PetInfo::class], version = 1, exportSchema = false)
+@Database(entities = [Account::class, PetInfo::class, Log::class], version = 1, exportSchema = false)
 
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDao(): UserDao

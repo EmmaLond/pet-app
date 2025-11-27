@@ -54,4 +54,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/petName" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addLog"
+        android:layout_width="54dp"
+        android:layout_height="73dp"
+        android:clickable="true"
+        android:contentDescription="Add to Log"
+        android:contextClickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

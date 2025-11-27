@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 
 @Dao
@@ -37,4 +38,9 @@ interface UserDao {
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :userId")
     suspend fun getUserWithPets(userId: Int): UserWithPets
+
+    // Log methods
+    @Query("INSERT INTO Log (petId, timeOccured, activity)" +
+                  "VALUES (:petId, :time, :activity)")
+    suspend fun addLog(petId: Int, time: Date, activity: String)
 }
