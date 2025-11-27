@@ -14,10 +14,12 @@ class PetProfile : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_pet_profile)
 
+        val petId = intent.getIntExtra("petId", -1)
+
         val addButton = findViewById<FloatingActionButton>(R.id.addLog)
         addButton.setOnClickListener {
             val intent = Intent(this, AddPetActivity::class.java)
-            intent.putExtra("userId", userId)
+            intent.putExtra("petId", petId)
             startActivity(intent)
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
