@@ -2,10 +2,8 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -26,7 +24,6 @@ class Login : AppCompatActivity() {
         val username = findViewById<TextInputEditText>(R.id.usernameEditText)
         val password = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<Button>(R.id.btnLogin)
-        val warning = findViewById<TextView>(R.id.warning)
 
         val backButton = findViewById<ImageButton>(R.id.backButton)
         backButton.setOnClickListener {
@@ -34,10 +31,7 @@ class Login : AppCompatActivity() {
         }
 
         loginButton.setOnClickListener {
-            // Reset warnings
-            warning.setText("")
-
-            // Set errors
+            // Set blank errors
             val email = username.text.toString().trim()
             if (email.isNullOrBlank()) {
                 username.setError("Username is required.")
@@ -61,12 +55,14 @@ class Login : AppCompatActivity() {
                             intent.putExtra("userId", accountTable.getUserId(email = email))
                             startActivity(intent)
 
-                        // Set warning
+                        // Set incorrect login errors
                         } else {
-                            warning.setText("Incorrect username or password. Please try again.")
+                            username.setError("Incorrect username or password. Please try again.")
+                            password.setError("Incorrect username or password. Please try again.")
                         }
                     } else {
-                        warning.setText("Incorrect username or password. Please try again.")
+                        username.setError("Incorrect username or password. Please try again.")
+                        password.setError("Incorrect username or password. Please try again.")
                     }
                 }
             }
