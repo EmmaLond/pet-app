@@ -1,5 +1,4 @@
 package com.example.petapp
-// package com.example.petapp.Room_Database
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -7,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
-import java.util.Date
 
 
 @Dao
@@ -37,6 +35,9 @@ interface UserDao {
 
     @Query("SELECT * FROM pets WHERE petId = :petId")
     fun getPet(petId: Int): Flow<PetInfo>
+
+    @Query("DELETE FROM pets WHERE petId = :petId")
+    fun removePet(petId: Int)
 
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :userId")

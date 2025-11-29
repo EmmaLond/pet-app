@@ -2,6 +2,8 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuInflater
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -45,9 +47,13 @@ class PetProfile : AppCompatActivity() {
 
         val addButton = findViewById<FloatingActionButton>(R.id.addLog)
         addButton.setOnClickListener {
-            val intent = Intent(this, addLog::class.java)
-            intent.putExtra("petId", petId)
-            startActivity(intent)
+            val menu = PopupMenu(this, it)
+            val inflater: MenuInflater = menu.menuInflater
+            inflater.inflate(R.menu.pet_menu, menu.menu)
+            menu.show()
+//            val intent = Intent(this, addLog::class.java)
+//            intent.putExtra("petId", petId)
+//            startActivity(intent)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
