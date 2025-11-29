@@ -46,6 +46,8 @@ class HomeScreen : AppCompatActivity() {
         petsAdapter = PetsAdapter(emptyList()) { clickedPet ->
             val intent = Intent(this, PetProfile::class.java)
             intent.putExtra("petId", clickedPet.petId)
+            intent.putExtra("userId", userId)
+            intent.putExtra("email", userEmail)
             startActivity(intent)
         }
 

@@ -34,10 +34,10 @@ interface UserDao {
     fun getPetsForUser(userId: Int): Flow<List<PetInfo>>
 
     @Query("SELECT * FROM pets WHERE petId = :petId")
-    fun getPet(petId: Int): Flow<PetInfo>
+    fun getPet(petId: Int): Flow<PetInfo?>
 
     @Query("DELETE FROM pets WHERE petId = :petId")
-    fun removePet(petId: Int)
+    suspend fun removePet(petId: Int)
 
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :userId")
