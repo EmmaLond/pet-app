@@ -1,10 +1,9 @@
 package com.example.petapp
 
-import android.R.attr.text
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log.v
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.trimmedLength
@@ -20,8 +19,12 @@ class OTP : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_otp)
-        val otpButton = findViewById<Button>(R.id.button_otp)
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
+        val otpButton = findViewById<Button>(R.id.button_otp)
         otpButton.setOnClickListener {
             val otpet = findViewById<TextInputEditText>(R.id.otpEditText)
             val otp = otpet.text.toString()
