@@ -16,6 +16,7 @@
 
     <EditText
         android:id="@+id/logOther"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Other"
@@ -26,6 +27,6 @@
         android:id="@+id/saveLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add To Log"/>
+        android:text="Add To Log" />
 
 </LinearLayout>

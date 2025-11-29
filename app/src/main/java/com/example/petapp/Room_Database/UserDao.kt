@@ -33,14 +33,20 @@ interface UserDao {
     suspend fun insertPet(pet: PetInfo): Long
 
     @Query("SELECT * FROM pets WHERE userId = :userId")
-    fun getPetsForUser(userId: Int): kotlinx.coroutines.flow.Flow<List<PetInfo>>
+    fun getPetsForUser(userId: Int): Flow<List<PetInfo>>
+
+    @Query("SELECT * FROM pets WHERE petId = :petId")
+    fun getPet(petId: Int): Flow<PetInfo>
 
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :userId")
     suspend fun getUserWithPets(userId: Int): UserWithPets
 
     // Log methods
-    @Query("INSERT INTO Log (petId, timeOccured, activity)" +
+    @Query("INSERT INTO Log (petId, timeOccurred, activity)" +
                   "VALUES (:petId, :time, :activity)")
     suspend fun addLog(petId: Int, time: Date, activity: String)
+
+    @Query("SELECT * FROM log WHERE petId = :petId")
+    fun getLog(petId: Int): Flow<Log>
 }

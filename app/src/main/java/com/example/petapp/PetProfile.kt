@@ -2,23 +2,40 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 
 class PetProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pet_profile)
-
+        val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
         val petId = intent.getIntExtra("petId", -1)
+
+        lifecycleScope.launch {
+            val speciesBreedet = findViewById<TextView>(R.id.stats)
+            val petName = findViewById<TextView>(R.id.petName)
+            accountTable.getPet(petId = petId).collect { info ->
+                val breed = info.breed
+                val species = info.species
+                val name = info.name
+                speciesBreedet.setText("Species: " + species + "\nBreed: "+ breed)
+                petName.setText(name)
+            }
+        }
+
 
         val addButton = findViewById<FloatingActionButton>(R.id.addLog)
         addButton.setOnClickListener {
-            val intent = Intent(this, AddPetActivity::class.java)
+            val intent = Intent(this, addLog::class.java)
             intent.putExtra("petId", petId)
             startActivity(intent)
         }
