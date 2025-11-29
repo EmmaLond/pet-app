@@ -1,12 +1,14 @@
 package com.example.petapp
 
 import android.os.Bundle
+import android.util.Log.v
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -63,11 +65,13 @@ class addLog : AppCompatActivity() {
                 lifecycleScope.launch {
                     accountTable.addLog(petId = petId, Date(), finalActivity)
                 }
+                finish()
             } else {
                 val finalActivity = selectedActivity
                 lifecycleScope.launch {
                     accountTable.addLog(petId = petId, Date(), finalActivity)
                 }
+                finish()
             }
         }
 
