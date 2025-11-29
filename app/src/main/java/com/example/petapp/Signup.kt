@@ -1,5 +1,6 @@
 package com.example.petapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
+import kotlin.jvm.java
 
 class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,14 +51,10 @@ class Signup : AppCompatActivity() {
 
                     // Adds login, doesn't go anywhere yet
                     if (passwordOne == passwordTwo && accountExist == null) {
-                        lifecycleScope.launch {
-                            accountTable.insert(
-                                Account(
-                                    email = email.text.toString().trim(),
-                                    password = BCrypt.hashpw(passwordOne, BCrypt.gensalt())
-                                )
-                            )
-                        }
+                        val intent = Intent(this@Signup, OTP::class.java)
+                        intent.putExtra("email", email.text.toString().trim())
+                        intent.putExtra("password", passwordOne)
+                        startActivity(intent)
                     // Sets warnings
                     } else if (passwordOne != passwordTwo) {
                         warning.setText("Passwords do not match.")
