@@ -2,7 +2,9 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +19,19 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
 
-        //val btnLogin = findViewById<Button>(R.id.btnLogin)
         val username = findViewById<TextInputEditText>(R.id.usernameEditText)
         val password = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<Button>(R.id.btnLogin)
         val warning = findViewById<TextView>(R.id.warning)
+
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         loginButton.setOnClickListener {
             // Reset warnings
