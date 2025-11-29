@@ -19,13 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:id="@+id/logTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log:"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/petLog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats" />
 
     <TextView
         android:id="@+id/stats"
@@ -38,27 +39,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/petLog"
-        android:padding="15dp"
-        android:background="@color/background_blue"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginTop="250dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="random"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/petName" />
+        android:background="@color/background_blue"
+        app:layout_constraintBottom_toTopOf="@+id/addLog"
+        app:layout_constraintTop_toBottomOf="@+id/logTitle" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addLog"
         android:layout_width="54dp"
         android:layout_height="73dp"
+        android:layout_margin="5dp"
         android:clickable="true"
         android:contentDescription="Add to Log"
         android:contextClickable="false"

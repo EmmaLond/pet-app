@@ -47,6 +47,6 @@ interface UserDao {
                   "VALUES (:petId, :time, :activity)")
     suspend fun addLog(petId: Int, time: Date, activity: String)
 
-    @Query("SELECT * FROM log WHERE petId = :petId")
-    fun getLog(petId: Int): Flow<Log>
+    @Query("SELECT * FROM log WHERE petId = :petId ORDER BY timeOccurred DESC")
+    fun getLog(petId: Int): Flow<List<Log>>
 }
