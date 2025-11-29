@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +24,11 @@ class Signup : AppCompatActivity() {
         val password_one = findViewById<EditText>(R.id.passwordEditText)
         val password_two = findViewById<EditText>(R.id.passwordEditTextAgain)
         val signupButton = findViewById<Button>(R.id.button_signup)
-        val warning = findViewById<TextView>(R.id.mistake)
-        
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         signupButton.setOnClickListener {
             // Set errors
             if (email.text.isEmpty()) {
@@ -38,9 +42,6 @@ class Signup : AppCompatActivity() {
             }
 
             if (!(email.text.isEmpty() && password_one.text.isEmpty() && password_two.text.isEmpty())) {
-                if (!(warning.text.isEmpty())) {
-                    warning.setText("")
-                }
                 val passwordOne = password_one.text.toString().trim()
                 val passwordTwo = password_two.text.toString().trim()
 
@@ -55,11 +56,12 @@ class Signup : AppCompatActivity() {
                         intent.putExtra("email", email.text.toString().trim())
                         intent.putExtra("password", passwordOne)
                         startActivity(intent)
-                    // Sets warnings
+                    // Sets Errors
                     } else if (passwordOne != passwordTwo) {
-                        warning.setText("Passwords do not match.")
+                        password_one.setError("Passwords do not match.")
+                        password_two.setError("Passwords do not match.")
                     } else {
-                        warning.setText("An account with that email already exists.")
+                        email.setError("An account with that email already exists.")
                     }
                 }
             }
