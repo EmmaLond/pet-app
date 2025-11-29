@@ -63,13 +63,23 @@ class addLog : AppCompatActivity() {
                 }
                 val finalActivity = custom
                 lifecycleScope.launch {
-                    accountTable.addLog(petId = petId, Date(), finalActivity)
+                    val newLog = Log(
+                        petId = petId,
+                        timeOccurred = Date(),
+                        activity = finalActivity
+                    )
+                    accountTable.insertLog(newLog)
                 }
                 finish()
             } else {
                 val finalActivity = selectedActivity
                 lifecycleScope.launch {
-                    accountTable.addLog(petId = petId, Date(), finalActivity)
+                    val newLog = Log(
+                        petId = petId,
+                        timeOccurred = Date(),
+                        activity = finalActivity
+                    )
+                    accountTable.insertLog(newLog)
                 }
                 finish()
             }

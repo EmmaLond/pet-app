@@ -43,9 +43,8 @@ interface UserDao {
     suspend fun getUserWithPets(userId: Int): UserWithPets
 
     // Log methods
-    @Query("INSERT INTO Log (petId, timeOccurred, activity)" +
-                  "VALUES (:petId, :time, :activity)")
-    suspend fun addLog(petId: Int, time: Date, activity: String)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLog(log: Log): Long
 
     @Query("SELECT * FROM log WHERE petId = :petId ORDER BY timeOccurred DESC")
     fun getLog(petId: Int): Flow<List<Log>>
