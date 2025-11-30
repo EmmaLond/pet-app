@@ -3,6 +3,7 @@ package com.example.petapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuInflater
+import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,10 @@ class PetProfile : AppCompatActivity() {
         setContentView(R.layout.activity_pet_profile)
         val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
         val petId = intent.getIntExtra("petId", -1)
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         lifecycleScope.launch {
             val speciesBreedet = findViewById<TextView>(R.id.stats)
