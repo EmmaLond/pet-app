@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,10 @@ class addLog : AppCompatActivity() {
         val accountTable = AppDatabase.getDatabase(applicationContext).userDao()
         val otherText = findViewById<EditText>(R.id.logOther)
         val petId = intent.getIntExtra("petId", -1)
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         val activityOptions: Spinner = findViewById(R.id.activityOptions)
         val activities = listOf("Went on Walk", "Fed Pet", "Gave Bath", "Went Potty", "Other")
