@@ -9,11 +9,22 @@
     android:padding="24dp"
     tools:context=".AddPetActivity">
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="-35dp"
+        android:layout_marginTop="-10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back"
+        android:src="@drawable/outline_arrow_back_24"/>
+
     <EditText
         android:id="@+id/petNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Pet Name"
+        android:textSize="30dp"
         android:inputType="textPersonName" />
 
     <EditText
@@ -21,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Species"
+        android:textSize="30dp"
         android:inputType="textPersonName" />
 
     <EditText
@@ -28,11 +40,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Breed"
+        android:textSize="30dp"
         android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/savePetButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Pet" />
+        android:text="Save Pet"
+        android:textSize="30dp" />
 </LinearLayout>

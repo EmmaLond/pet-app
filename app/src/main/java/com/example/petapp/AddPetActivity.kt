@@ -3,6 +3,7 @@ package com.example.petapp
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,10 @@ class AddPetActivity : AppCompatActivity() {
         val petSpeciesEdit = findViewById<EditText>(R.id.petSpeciesEditText)
         val petBreedEdit = findViewById<EditText>(R.id.petBreedEditText)
         val saveButton = findViewById<Button>(R.id.savePetButton)
-        val dao = AppDatabase.getDatabase(applicationContext).userDao()
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         saveButton.setOnClickListener {
             val petName = petNameEdit.text.toString().trim()
