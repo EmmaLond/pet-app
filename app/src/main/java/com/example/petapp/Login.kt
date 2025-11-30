@@ -41,30 +41,33 @@ class Login : AppCompatActivity() {
                 password.setError("Password is required.")
             }
 
+            if ((thePassword.isNullOrBlank() && email.isNullOrBlank())) {
+                return@setOnClickListener
+            }
+
             // Check passwords
-            if (!(thePassword.isNullOrBlank() && email.isNullOrBlank())) {
-                lifecycleScope.launch {
-                    val hashedPassword = accountTable.getPassword(email = email)
-                    if (hashedPassword != null) {
-                        val checkPassword = BCrypt.checkpw(thePassword, hashedPassword)
+            lifecycleScope.launch {
+                val hashedPassword = accountTable.getPassword(email = email)
+                if (hashedPassword != null) {
+                    val checkPassword = BCrypt.checkpw(thePassword, hashedPassword)
 
-                        // Login
-                        if (checkPassword) {
-                            val intent = Intent(this@Login, HomeScreen::class.java)
-                            intent.putExtra("email", email)
-                            intent.putExtra("userId", accountTable.getUserId(email = email))
-                            startActivity(intent)
+                    // Login
+                    if (checkPassword) {
+                        val intent = Intent(this@Login, HomeScreen::class.java)
+                        intent.putExtra("email", email)
+                        intent.putExtra("userId", accountTable.getUserId(email = email))
+                        startActivity(intent)
 
-                        // Set incorrect login errors
-                        } else {
-                            username.setError("Incorrect username or password. Please try again.")
-                            password.setError("Incorrect username or password. Please try again.")
-                        }
+                    // Set incorrect login errors
                     } else {
                         username.setError("Incorrect username or password. Please try again.")
                         password.setError("Incorrect username or password. Please try again.")
                     }
+                } else {
+                    username.setError("Incorrect username or password. Please try again.")
+                    password.setError("Incorrect username or password. Please try again.")
                 }
+
             }
         }
     }

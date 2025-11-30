@@ -29,7 +29,11 @@ class AddPetActivity : AppCompatActivity() {
             val petName = petNameEdit.text.toString().trim()
             val petSpecies = petSpeciesEdit.text.toString().trim()
             if (petName.isEmpty() || petSpecies.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                petNameEdit.setError("Please put your pet's name")
+                return@setOnClickListener
+            }
+            if (petSpecies.isEmpty()) {
+                petSpeciesEdit.setError("Please put species")
                 return@setOnClickListener
             }
 
