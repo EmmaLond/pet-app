@@ -60,7 +60,6 @@ class Signup : AppCompatActivity() {
                 val accountExist =
                     accountTable.getPassword(email = email.text.toString().trim())
 
-                // Adds login, doesn't go anywhere yet
                 if (passwordOne == passwordTwo && accountExist == null) {
                     val intent = Intent(this@Signup, OTP::class.java)
                     intent.putExtra("email", email.text.toString().trim())

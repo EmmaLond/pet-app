@@ -41,7 +41,7 @@ class Login : AppCompatActivity() {
                 password.setError("Password is required.")
             }
 
-            if ((thePassword.isNullOrBlank() && email.isNullOrBlank())) {
+            if (thePassword.isNullOrBlank() || email.isNullOrBlank()) {
                 return@setOnClickListener
             }
 

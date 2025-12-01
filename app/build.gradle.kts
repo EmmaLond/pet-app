@@ -58,4 +58,5 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.6.1")
     androidTestImplementation("androidx.test:rules:1.6.1")
     implementation("androidx.test.espresso:espresso-idling-resource:3.7.0")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.7.0")
 }
