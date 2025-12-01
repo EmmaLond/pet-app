@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.androidTestImplementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -52,4 +54,8 @@ dependencies {
     ksp("androidx.room:room-compiler:2.8.2")
     // https://mvnrepository.com/artifact/org.mindrot/jbcrypt
     implementation("org.mindrot:jbcrypt:0.4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    implementation("androidx.test.espresso:espresso-idling-resource:3.7.0")
 }

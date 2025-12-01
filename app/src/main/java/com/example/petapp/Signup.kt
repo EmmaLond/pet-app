@@ -8,6 +8,8 @@ import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapp.com.example.petapp.EspressoIdlingResource
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
 
@@ -30,17 +32,20 @@ class Signup : AppCompatActivity() {
         signupButton.setOnClickListener {
             // Set errors
             var isEmpty = false
+            val passwordLayout1 = findViewById<TextInputLayout>(R.id.show_password)
+            val passwordLayout2 = findViewById<TextInputLayout>(R.id.show_password_again)
+            val emailLayout = findViewById<TextInputLayout>(R.id.emailWrap)
             if (email.text.isEmpty()) {
                 isEmpty = true
-                email.setError("Email is required.")
+                emailLayout.error = "Email is required."
             }
             if (password_one.text.isEmpty()) {
                 isEmpty = true
-                password_one.setError("Password is required.")
+                passwordLayout1.error = "Password is required."
             }
             if (password_two.text.isEmpty()) {
                 isEmpty = true
-                password_two.setError("Password is required.")
+                passwordLayout2.error = "Password is required."
             }
             if (isEmpty) {
                 return@setOnClickListener
@@ -49,6 +54,7 @@ class Signup : AppCompatActivity() {
             val passwordOne = password_one.text.toString().trim()
             val passwordTwo = password_two.text.toString().trim()
 
+            EspressoIdlingResource.signUpValidation.increment()
             lifecycleScope.launch {
                 // Check account exists, returns null if there is no account
                 val accountExist =
@@ -62,11 +68,12 @@ class Signup : AppCompatActivity() {
                     startActivity(intent)
                 // Sets Errors
                 } else if (passwordOne != passwordTwo) {
-                    password_one.setError("Passwords do not match")
-                    password_two.setError("Passwords do not match")
+                    passwordLayout1.error = "Passwords do not match"
+                    passwordLayout2.error = "Passwords do not match"
                 } else {
-                    email.setError("An account with that email already exists")
+                    emailLayout.error = "An account with that email already exists"
                 }
+                EspressoIdlingResource.signUpValidation.decrement()
             }
         }
 
