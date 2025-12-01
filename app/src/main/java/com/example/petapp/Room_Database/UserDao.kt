@@ -27,9 +27,11 @@ interface UserDao {
     suspend fun getUserId(email: String): Int
 
     //pet methods
+    //method that adds a pet into the database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPet(pet: PetInfo): Long
 
+    //method that retrieves all pets associated with the selected userID
     @Query("SELECT * FROM pets WHERE userId = :userId")
     fun getPetsForUser(userId: Int): Flow<List<PetInfo>>
 
