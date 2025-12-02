@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pet App</string>
+    <string name="app_name">Morb</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="view_username">Username:</string>
