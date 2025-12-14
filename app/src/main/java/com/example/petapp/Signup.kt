@@ -2,7 +2,6 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.isEmpty
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
