@@ -28,13 +28,13 @@ class AddPetActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        // Setup combo box
         val speciesOptions: Spinner = findViewById(R.id.petSpecies)
         val species = listOf("Dog", "Cat", "Lizard", "Bird", "Frog", "Spider", "Other")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, species)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         speciesOptions.adapter = adapter
         var selectedSpecies = ""
-
         speciesOptions.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
