@@ -29,6 +29,7 @@ class addLog : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        // Set drop down options
         val activityOptions: Spinner = findViewById(R.id.activityOptions)
         val activities = listOf("Went on Walk", "Fed Pet", "Gave Bath", "Went Potty", "Other")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, activities)

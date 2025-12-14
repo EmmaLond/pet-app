@@ -27,13 +27,12 @@
         android:textSize="30dp"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/petSpeciesEditText"
+    <Spinner
+        android:id="@+id/petSpecies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Species"
-        android:textSize="30dp"
-        android:inputType="textPersonName" />
+        android:layout_height="60dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/petBreedEditText"
