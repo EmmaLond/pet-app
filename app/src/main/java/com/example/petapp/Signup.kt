@@ -66,7 +66,7 @@ class Signup : AppCompatActivity() {
                 passwordLayout2.error = "Passwords do not match."
                 return@setOnClickListener
             }
-            if (!userEmail.contains('@') || !userEmail.contains('.')) {
+            if (!(userEmail.contains('@') && userEmail.contains('.'))) {
                 emailLayout.error = "Please enter a valid email."
                 return@setOnClickListener
             }
