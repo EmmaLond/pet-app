@@ -2,6 +2,7 @@ package com.example.petapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.i
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,8 +29,16 @@ class HomeScreen : AppCompatActivity() {
         userId = intent.getIntExtra("userId", -1)
         userEmail = intent.getStringExtra("email")
 
-        val usernameText = findViewById<TextView>(R.id.userText)
-        usernameText.text = "Hello, $userEmail!"
+        userEmail?.let {
+            val atLocation = it.indexOf('@')
+            val usernameText = findViewById<TextView>(R.id.userText)
+            if (atLocation < 9) {
+                val accountName = it.substring(0, atLocation)
+                usernameText.text = "Hello, $accountName!"
+            } else {
+                usernameText.text = "Hello, User!"
+            }
+        }
 
         accountDao = AppDatabase.getDatabase(applicationContext).userDao()
 
